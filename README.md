@@ -52,8 +52,10 @@ Criar conta e configurar os serviços externos:
 ## Dependencias:
 
 ```
+npm install
 yarn add typescript @types/react @types/node -D
 yarn add sass
+yarn add react-icons
 ```
 
 ## Clonar o repositório
