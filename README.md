@@ -49,6 +49,13 @@ Criar conta e configurar os serviços externos:
 
 *Configurações dos serviços estão localizadas no arquivo servicesConfig.md na raiz do projeto.*
 
+## Dependencias:
+
+```
+yarn add typescript @types/react @types/node -D
+yarn add sass
+```
+
 ## Clonar o repositório
 
 ```bash
