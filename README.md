@@ -51,11 +51,11 @@ Criar conta e configurar os serviços externos:
 
 ## Dependencias:
 
-```
-npm install
+``'
 yarn add typescript @types/react @types/node -D
 yarn add sass
 yarn add react-icons
+yarn add stripe
 ```
 
 ## Clonar o repositório
@@ -71,6 +71,10 @@ $ cd ignews
 ```bash
 # Execute yarn para instalar as dependências
 $ yarn
+$ yarn add typescript @types/react @types/node -D
+$ yarn add sass
+$ yarn add react-icons
+$ yarn add stripe
 # Na raiz do projeto crie uma copia do arquivo .env.local.example
 # Altere o nome da copia para .env.local
 # Preencha as variáveis ambiente de acordo com as instruções
