@@ -1,18 +1,17 @@
-//Para tipar as props do App
-import { AppProps } from 'next/app'
-import Header from '../components/Header'
-import '../styles/global.scss'
+// Para tipar as props do App
+import { Provider as NextAuthProvider } from "next-auth/client";
+import { AppProps } from "next/app";
+
+import Header from "../components/Header";
+import "../styles/global.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-  <>
-
-  <Header />
-  
-  <Component {...pageProps} />
-
-  </>
-  )
+    <NextAuthProvider session={pageProps.session}>
+      <Header />
+      <Component {...pageProps} />
+    </NextAuthProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
