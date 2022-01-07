@@ -1,4 +1,3 @@
-// Para tipar as props do App
 import { Provider as NextAuthProvider } from "next-auth/client";
 import { AppProps } from "next/app";
 

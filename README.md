@@ -53,7 +53,7 @@ Criar conta e configurar os serviços externos:
 ## Clonar o repositório
 
 ```bash
-$ git clone https://github.com/CarlosAmorim94/DTMoney
+$ git clone https://github.com/CarlosAmorim94/IG-News
 # Entre na pasta do repositório clonado
 $ cd ignews
 ```
