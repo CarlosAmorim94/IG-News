@@ -1,20 +1,19 @@
-import React from "react";
+import styles from './styles.module.scss'
+import {SingInButton} from '../SignInButton/index';
 
-import { SignInButton } from "../SignInButton";
-import styles from "./styles.module.scss";
+export function Header() {
+	return (
+		<header className={styles.headerContainer}>
+			<div className={styles.headerContent}>
+				<img src="/images/logo.svg" alt="ig.news" />
 
-export default function Header() {
-  return (
-    <header className={styles.headerContainer}>
-      <div className={styles.headerContent}>
-        <img src="/images/logo.svg" alt="ig.news" />
-        <nav>
-          <a className={styles.active}>Home</a>
-          <a>Posts</a>
-        </nav>
+				<nav>
+					<a className={styles.active}>Home</a>
+					<a>Posts</a>
+				</nav>
 
-        <SignInButton />
-      </div>
-    </header>
-  );
+				<SingInButton />
+			</div>
+		</header>
+	)
 }
