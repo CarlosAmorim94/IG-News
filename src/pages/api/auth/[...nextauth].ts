@@ -26,13 +26,15 @@ export const authOptions = {
             query.Not(
               query.Exists(
                 query.Match(
-                  query.Index("user_by_email"),
-                  query.Casefold(user.email)
+                  //Match = WHERE do SQL
+                  query.Index("user_by_email"), //Criamos o user_by_email como indice de pesquisa no FaunaDB
+                  query.Casefold(user.email) //Casefold vai deixar tudo em lowercase
                 )
               )
-            ),
+            ), //Se o usuário não existe, então criamos com Create, se ele existe, vamos pro GET para pegar informação.
             query.Create(query.Collection("users"), { data: { email } }),
             query.Get(
+              // Get = SELECT do SQL
               query.Match(
                 query.Index("user_by_email"),
                 query.Casefold(user.email)
