@@ -2,10 +2,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { stripe } from "../../services/stripe";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === "POST") {
+export default async (request: NextApiRequest, response: NextApiResponse) => {
+  if (request.method === "POST") {
     //Saber qual o usuário logado na aplicação, pelos cookies pois o nextauth salva dados no cookies e estamos no "backend" da aplicação
-    const session = await getSession({ req });
+    const session = await getSession({ req: request });
 
     // Precisamos criar um customer/cliente no stripe para realizar o pagamento
     const stripeCustomer = await stripe.customers.create({
@@ -23,9 +23,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       success_url: process.env.STRIPE_SUCCESS_URL as string,
       cancel_url: process.env.STRIPE_CANCEL_URL as string,
     });
-    return res.status(200).json({ sessionId: stripeCheckoutSession.id });
+
+    return response.status(200).json({ sessionId: stripeCheckoutSession.id });
   } else {
-    res.setHeader("Allow", "POST");
-    res.status(405).end("Method Not Allowed");
+    response.setHeader("Allow", "POST");
+    response.status(405).end("Method Not Allowed");
   }
 };

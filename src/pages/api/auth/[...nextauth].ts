@@ -4,11 +4,11 @@ import GithubProvider from "next-auth/providers/github";
 import { fauna } from "../../../services/fauna";
 import { query } from "faunadb";
 
-export const authOptions = {
+export default NextAuth({
   providers: [
     GithubProvider({
-      clientId: process.env.NEXT_PUBLIC_GITHUB_ID as string,
-      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET as string,
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
       authorization: {
         params: {
           scope: "read:user",
@@ -19,6 +19,8 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, account, profile }) {
       const { email } = user;
+
+      console.log(email);
 
       try {
         await fauna.query(
@@ -48,6 +50,4 @@ export const authOptions = {
       }
     },
   },
-};
-
-export default NextAuth(authOptions);
+});
