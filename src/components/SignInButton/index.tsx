@@ -7,8 +7,6 @@ import styles from "./styles.module.scss";
 export function SignInButton() {
   const { data: session } = useSession(); //verifica se o usuário está ativo/autenticado
 
-  console.log(session);
-
   return session ? (
     <button className={styles.signInButton} type="button">
       <FaGithub color="#04d361" />
