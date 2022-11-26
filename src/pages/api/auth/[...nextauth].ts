@@ -20,8 +20,6 @@ export default NextAuth({
     async signIn({ user, account, profile }) {
       const { email } = user;
 
-      console.log(email);
-
       try {
         await fauna.query(
           query.If(
@@ -30,17 +28,14 @@ export default NextAuth({
                 query.Match(
                   //Match = WHERE do SQL
                   query.Index("user_by_email"), //Criamos o user_by_email como indice de pesquisa no FaunaDB
-                  query.Casefold(user.email) //Casefold vai deixar tudo em lowercase
+                  query.Casefold(email) //Casefold vai deixar tudo em lowercase
                 )
               )
             ), //Se o usuário não existe, então criamos com Create, se ele existe, vamos pro GET para pegar informação.
             query.Create(query.Collection("users"), { data: { email } }),
             query.Get(
               // Get = SELECT do SQL
-              query.Match(
-                query.Index("user_by_email"),
-                query.Casefold(user.email)
-              )
+              query.Match(query.Index("user_by_email"), query.Casefold(email))
             )
           )
         );
